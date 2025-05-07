@@ -1,17 +1,12 @@
-import { useState } from 'react'
-import './App.css'
-
-import Home from './pages/home'
+import AppRoutes from './routes'
 import useAuth from './hooks/useAuth'
+import './App.css'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 function App() {
   const auth = useAuth()
-  
-  return (
-    <>
-      <Home {...auth} />
-    </>
-  )
+
+  return <AppRoutes auth={auth} />
 }
 
 export default App

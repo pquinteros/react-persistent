@@ -1,10 +1,10 @@
 export default function Home({user, isAuthenticated, handleLogout, handleLogin}) {
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold">Redux Persist Demo</h1>
+      <h1 className="text-xl font-bold mb-7">Redux Persist Demo</h1>
       {isAuthenticated ? (
         <>
-          <p>Bienvenido, {user.name}</p>
+          <p className="mb-5">Bienvenido, {user.name}</p>
           <button onClick={handleLogout}>Cerrar sesión</button>
         </>
       ) : (

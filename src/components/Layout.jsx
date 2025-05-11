@@ -8,7 +8,7 @@ export default function Layout() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
           LOGO
           <div className="w-full md:block md:w-auto flex" id="navbar-solid-bg">
-            <ul className="flex items-center font-bold mt-4 rounded-lg bg-gray-50 md:space-x-1 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+            <ul className="flex w-full md:w-max items-center justify-center font-bold mt-4 rounded-lg space-x-1 bg-transparent">
               <li>
                 <NavLink
                   to="/"
@@ -45,7 +45,31 @@ export default function Layout() {
                   Blog
                 </NavLink>
               </li>
-              <li className='pl-2'>
+              <li>
+                <NavLink
+                  to="/protect"
+                  className={({ isActive }) =>
+                    `text-white hover:text-gray-300 transition-colors p-4 ${
+                      isActive ? "active" : ""
+                    }`
+                  }
+                >
+                  Protect
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/tank"
+                  className={({ isActive }) =>
+                    `text-white hover:text-gray-300 transition-colors p-4 ${
+                      isActive ? "active" : ""
+                    }`
+                  }
+                >
+                  Tank
+                </NavLink>
+              </li>
+              <li className='pl-3'>
                 <SignedIn>
                   <UserButton />
                 </SignedIn>

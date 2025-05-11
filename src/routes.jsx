@@ -1,27 +1,46 @@
-import { lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import Layout from './components/Layout'
-import { Suspense } from 'react'
-
 import Home from './pages/Home'
 import About from './pages/About'
-const Blog = lazy(() => import('./pages/Blog'))
+import Protect from './pages/Protect'
+import Tank from './pages/Tank'
 
-export default function AppRoutes({ auth }) {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home {...auth} />} />
-        <Route path="/about" element={<About />} />
-        <Route
-          path="/blog"
-          element={
-            <Suspense fallback={<div>Cargando...</div>}>
-              <Blog />
-            </Suspense>
-          }
-        />
-      </Route>
-    </Routes>
-  )
-}
+const Blog = lazy(() => import('./pages/Blog'))
+const Post = lazy(() => import('./pages/Post'))
+
+import { postLoader, postsLoader } from './loaders/postLoaders'
+
+export const routes = [
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { 
+        path: "/", 
+        element: <Home /> 
+      },
+      { 
+        path: "/about", 
+        element: <About /> 
+      },
+      {
+        path: "/blog",
+        element: <Suspense fallback={<div>Loading...</div>}><Blog /></Suspense>,
+        loader: postsLoader
+      },
+      {
+        path: "/blog/:id",
+        element: <Suspense fallback={<div>Loading...</div>}><Post /></Suspense>,
+        loader: postLoader
+      },
+      { 
+        path: "/protect", 
+        element: <Protect /> 
+      },
+      { 
+        path: "/tank", 
+        element: <Tank /> 
+      },
+    ]
+  }
+]

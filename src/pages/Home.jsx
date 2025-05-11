@@ -1,4 +1,8 @@
-export default function Home({user, isAuthenticated, handleLogout, handleLogin}) {
+import { useAuthContext } from '../context/AuthContext'
+
+export default function Home() {
+  const { user, isAuthenticated, handleLogout, handleLogin } = useAuthContext()
+
   return (
     <div className="p-4">
       <h1 className="text-xl font-bold mb-7">Redux Persist Demo</h1>
